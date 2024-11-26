@@ -1,0 +1,279 @@
+ \documentclass[11 pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage[english]{babel}
+\usepackage{tabu}
+\usepackage[letter paper, portrait, margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage[font=footnotesize]{caption}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{import}
+\hypersetup{
+	colorlinks = true,
+	citecolor = blue,
+	linkcolor = blue,
+	linktocpage}
+\usepackage[capitalize]{cleveref}
+\usepackage{pdfsync}
+\newcommand{\crefrangeconjunction}{—}
+
+\graphicspath{{Figures/}}
+
+%\renewcommand{\thesection}{\Roman{section}} 
+%\titleformat{\section}
+ % {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
+%\titlespacing{\section}{0pt}{*0}{*0}
+%\titlespacing{\subsection}{0pt}{*0}{*0}
+%\titlespacing{\subsubsection}{0pt}{*0}{*0}
+\setlength{\belowcaptionskip}{-7pt}
+
+
+%SetFonts
+
+%SetFonts
+\usepackage{pdfsync}
+\synctex=1
+\definecolor{lightGrey}{rgb}{0.9, 0.9, 0.9}
+%\lstset{
+%	language={[77]Fortran},
+%	keywordstyle=\bfseries\ttfamily\color[RGB]{0,150,0},
+%	identifierstyle=\ttfamily,
+%	directivestyle=\bfseries\ttfamily\color[RGB]{190,52,211},
+%	commentstyle=\ttfamily\color[RGB]{0,0,240},
+%	stringstyle=\ttfamily\color[RGB]{240,0,0},
+%	showstringspaces=false,
+%	basicstyle=\ttfamily\ssmall,
+%	numberstyle=\ssmall,
+%	numbers=left,
+%	stepnumber=1,
+%	numbersep=10pt,
+%	tabsize=1,
+%	breaklines=true,
+%	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+%	breakatwhitespace=false,
+%	aboveskip={.5\baselineskip},
+%  columns=fixed,
+%  upquote=true,
+%  extendedchars=true,
+%  escapeinside={(*@}{@*)}
+% %frame=single,
+% %backgroundcolor=\color{lightGrey},
+%}
+
+\newcommand{\Hilight}{\makebox[0pt][l]{\color{lightGrey}\rule[-2pt]{\linewidth}{9pt}}}
+
+\usepackage[compact]{titlesec}
+%\renewcommand{\thesection}{\Roman{section}} 
+%\titleformat{\section}
+ % {\normalfont\fontsize{12}{15}\bfseries}{\thesection}{1em}{}
+%\titlespacing{\section}{0pt}{*0}{*0}
+%\titlespacing{\subsection}{0pt}{*0}{*0}
+%\titlespacing{\subsubsection}{0pt}{*0}{*0}
+\setcounter{secnumdepth}{4}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+\setlength{\belowcaptionskip}{-15pt}
+\usepackage[backend=bibtex,
+style = phys,
+citestyle= phys,
+pageranges= false,
+biblabel = brackets,
+sorting=none]{biblatex}
+
+\newcommand*{\subfilesbibliography}[1]{%
+\expandafter\ifx\csname ver@subfiles.cls\endcsname\relax
+\expandafter\@secondoftwo
+\else
+\expandafter\@firstoftwo
+\fi
+{\bibliography{#1}}
+{}%
+}
+
+%\bibliography{qcmd}
+\graphicspath{{Figures/}}
+\pagestyle{myheadings}
+\markboth{Nathan London, DL\_POLY f-QCMD}
+{Nathan London, DL\_POLY f-QCMD}
+
+
+\newcommand{\dlpoly}{DL\_POLY Quantum}
+
+
+\title{Real-time extension to bead-fourier path integrals}
+\author{Nathan London}
+\date{}							% Activate to display a given date or no date
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\newpage
+
+  \begin{equation}
+    \label{eq:label}
+    Z = \mathrm{Tr} \left[ \mathrm{e}^{-\beta \hat{H}} \right]
+  \end{equation}
+ 
+  \begin{equation}
+    Z = \int \mathrm{d}x \left\langle x \left| \mathrm{e}^{-\beta \hat{H}} \right| x \right\rangle
+  \end{equation}
+  
+  \begin{equation}	
+    Z \propto \int \mathrm{d}\{x_j\} \int \mathrm{d}\{p_j\}\ \mathrm{e}^{-\beta\left[ \sum^{n}_{j=1}\left( \frac{nm}{2\beta^2\hbar^2}
+    (x_{j+1}-x_j)^2 + \frac{1}{n}V(x_j)\right)\right]}
+  \end{equation}
+ 
+  \begin{equation}
+    Z = \oint D(x(u))\mathrm{e}^{-S(x(u))}
+  \end{equation}
+ 
+  \begin{equation}
+    S(x(u)) = \frac{1}{\hbar}\int_{{0}}^{{\beta\hbar}}\mathrm{d}{u} { \frac{m\dot{x}(u)^2}{2}+ V(x(u))}
+  \end{equation}
+ 
+  \begin{equation}
+    Z = \int \mathrm{d}x \int_{x(0)=x}^{x(\beta\hbar)=x} D(x(u))\mathrm{e}^{-S(x(u))}
+  \end{equation}
+  
+
+  \begin{equation}
+    x(u) = x + (x' -x) \frac{u}{\beta\hbar} + \sum^{\infty}_{k=1} a_k \sin\left( \frac{k\pi u}{\beta\hbar}\right)
+  \end{equation}
+ 
+  $u_j = (j-1) \frac{\beta\hbar}{n}$
+  $x(u_j) = x_j$ with $x(u_{n+1}) = x_1$
+  \begin{equation}
+    Z = \int \mathrm{d}\{x_j\}\int_{x_1}^{x_2} D(x(u))\dots\int_{x_n}^{x_1} D(x(u))
+    \mathrm{e}^{ -\sum_{j=1}^n S_j(x(u))} 
+  \end{equation}
+ 
+  \begin{equation}
+    S_j(x(u)) = \frac{1}{\hbar}\int_{u_j}^{u_{j+1}}\mathrm{d}{u}  \frac{m\dot{x}(u)^2}{2}+ V(x(u))
+  \end{equation}
+ 
+  \begin{equation}
+    x_j(u) = x_j + \frac{(x_{j+1}-x_j)(u-u_j)}{u_{j+1}-u_j} + \sum^{\infty}_{k=1} a_{jk}\sin\left(
+      \frac{k\pi(u-u_j}{u_{j+1}-u-j}\right)
+  \end{equation}
+  
+
+  \begin{equation}
+    \dot{x}(u) = \frac{dx(u)}{du} = \frac{x_{j+1}-x_j}{u_{j+1}-u_j} + \sum_k a_{jk} \frac{k\pi}{u_{j+1}-u_j}
+    \cos\left( \frac{k\pi(u-u_j)}{u_{j+1}-u_j}\right)
+  \end{equation}
+ 
+  $\xi = \frac{u-u_j}{u_{j+1}-u_j}$, $u_{j+1}-u_j = \frac{\beta\hbar}{n}$
+  \begin{multline}
+    \dot{x}(u)^2 = \left(\frac{(x_{j+1}-x_j)n}{\beta\hbar}\right)^2 + 
+    2\frac{(x_{j+1}-x_j)n}{\beta\hbar} 
+    \sum_k a_{jk} \frac{k\pi n}{\beta\hbar}
+    \cos\left( k\pi\xi\right) \\
+    +\left(\sum_k a_{jk} \frac{k\pi n}{\beta\hbar}
+    \cos\left(k\pi\xi\right)\right)^2
+  \end{multline}
+  
+
+  $\int_0^1 \mathrm{d}\xi \cos(k\pi\xi) = 0$
+  \begin{equation}
+    \begin{split}
+      \frac{1}{\hbar}\int_{u_j}^{u_{j+1}} \mathrm{d}u \frac{m\dot{x}(u)^2}{2} 
+        &= \frac{m\beta\hbar}{2\hbar n}
+        \int_0^1\mathrm{d}\xi\ \dot{x}(\xi)^2 \\
+        &= \frac{mn}{2\beta\hbar^2}\left[(x_{j+1}-x_j)^2 + \sum_k \frac{(k\pi)^2}{2}a_{jk}^2\right]
+    \end{split}
+  \end{equation}
+   
+    \begin{equation}
+      \frac{1}{\hbar}\int_{u_j}^{u_{j+1}}\mathrm{d}u\ V(x(u)) = \frac{\beta}{n}\int_0^1\mathrm{d}\xi\ V(x_j(\xi))
+    \end{equation}
+    
+  \begin{equation}
+    Z = C(\beta)\int\mathrm{d}\{x_j\}\int\mathrm{d}\{a_{jk}\}\ \mathrm{e}^{-\beta H(x_j,a_{jk})}
+  \end{equation}
+
+  
+  \begin{multline}
+    H(x_j,a_{jk})= \sum_{j=1}^{n} \left[ \frac{mn}{2\beta^2\hbar^2}\left((x_{j+1}-x_j)^2 + \sum^{k_\mathrm{max}}_{k=1}
+      \frac{(k\pi)^2}{2}a_{jk}^2\right) \right. \\ \left.   + \frac{1}{n}\int_0^1\mathrm{d}\xi\ V(x_j(\xi))\right]
+  \end{multline}
+
+  \begin{equation}
+    C(\beta) = \left( \frac{mn}{2\beta\hbar^2}\right)^{ \frac{n}{2}(1+k_{\mathrm{max}})}
+    \frac{k_\mathrm{max}!}{\sqrt{2}}
+  \end{equation}
+ 
+  \begin{equation}
+    H \to H + \sum^{n}_{j=1} \left[ \frac{p_j^2}{2m} + \sum^{k_\mathrm{max}}_{k=1} \frac{p_{jk}^2}{2m_{k}}\right]
+  \end{equation}
+
+  The equations of motion for the bead-fourier system can be found as,
+  \begin{equation}
+    \frac{ \partial p_{j}}{ \partial t} = -\frac{ \partial H}{ \partial x_{j}},
+    \label{eq:eom-p-bead}
+  \end{equation}
+  \begin{equation}
+    \frac{ \partial x_{j}}{ \partial t} = \frac{ \partial H}{ \partial p_{j}} = \frac{p_{j}}{m},
+    \label{eq:eom-x-bead}
+  \end{equation}
+  \begin{equation}
+    \frac{ \partial p_{jk}}{ \partial t} = -\frac{ \partial H}{ \partial a_{jk}},
+    \label{eq:eom-p-fourier}
+  \end{equation}
+  and
+  \begin{equation}
+    \frac{ \partial a_{jk}}{ \partial t} = \frac{ \partial H}{ \partial p_{jk}} = \frac{p_{jk}}{m_{k}},
+    \label{eq:eom-a-fourier}
+  \end{equation}
+  with the derivative of the Hamiltonian with respect to the bead positions being
+  \begin{align} 
+  %\begin{equation}
+    \frac{ \partial H}{ \partial x_j} 
+    &= \frac{ \partial }{ \partial x_j} \left[ \sum^{n}_{j=1} \frac{1}{2}\omega_n^2
+    (x_{j+1}-x_j)^2 \right] + \frac{ \partial }{ \partial x_j} \left[ \sum^{n}_{j=1} \frac{1}{n} \int_0^1 
+    \mathrm{d}\xi\ V[x_j(\xi)] \right] \\
+    &= \omega_n^2(2x_j-x_{j+1}-x_{j-1})
+    + \frac{1}{n}\left[
+    \int_0^1 \mathrm{d}\xi\ \frac{ \partial V[x_j(\xi)]}{ \partial x_j(\xi)} \frac{ \partial x_j(\xi)}{ \partial x_j}
+    +\int_0^1 \mathrm{d}\xi\ \frac{ \partial V[x_{j-1}(\xi)]}{ \partial x_{j-1}(\xi)} \frac{ \partial x_{j-1}(\xi)}{
+    \partial x_j}\right]\\
+    &= \omega_n^2(2x_j-x_{j+1}-x_{j-1})
+    + \frac{1}{n}\left[
+    \int_0^1 \mathrm{d}\xi\ \frac{ \partial V[x_j(\xi)]}{ \partial x_j(\xi)}(1-\xi)
+    +\int_0^1 \mathrm{d}\xi\ \frac{ \partial V[x_{j-1}(\xi)]}{ \partial x_{j-1}(\xi)}\xi
+    \right].
+  %\end{equation}
+    \label{eq:part-x}
+  \end{align}
+
+  The derivative of the Hamiltonian with respect to the Fourier amplitudes is
+\begin{align}
+  \frac{ \partial H}{ \partial a_{jk}}  
+    &= \frac{1}{2} \omega_{n}^{2}(k\pi)^2 a_{jk} + \frac{1}{n}\int_{0}^{1} \mathrm{d} \xi\
+  \frac{ \partial V[x_{j}(\xi)]}{ \partial x_{j}(\xi)} \frac{ \partial x_{j}(\xi)}{ \partial a_{jk}}\\
+    &= \frac{1}{2} \omega_{n}^{2}(k\pi)^2 a_{jk}+ \frac{1}{n}\int_{0}^{1} \mathrm{d} \xi\
+  \frac{ \partial V[x_{j}(\xi)]}{ \partial x_{j}(\xi)} \sin(k\pi\xi).
+  \label{eq:part-a}
+\end{align}
+
+\begin{equation}
+  \sum^{n}_{j=1} \frac{ \partial H}{ \partial x_{j}} = \frac{1}{n} \sum^{n}_{j=1} \int_{0}^{1} \mathrm{d} \xi\
+  \frac{ \partial V[x_{j}(\xi)]}{ \partial x_{j}}
+  \label{eq:sum-part-x}
+\end{equation}
+
+  \end{document} 
+
